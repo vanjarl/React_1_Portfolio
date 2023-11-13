@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import './scss/app.scss';
+import React from 'react';
+import { createContext } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { store } from './components/Redux/store';
+import { Provider } from 'react-redux';
+
+import Header from './components/Header';
+import Home from './pages/Home';
+import Cart from './pages/Cart';
+import NotFound from './pages/NotFound';
+
+export const SearchContext = createContext('');
 
 function App() {
+  const [searchValue, setSearchValue] = React.useState('');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+        <Provider store={store}>
+          <div className="wrapper">
+            <Header />
+            <div className="content">
+              <Routes>
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/" element={<Home />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
+          </div>
+        </Provider>
+      </SearchContext.Provider>
+    </Router>
   );
 }
 
