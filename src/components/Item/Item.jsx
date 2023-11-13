@@ -6,6 +6,7 @@ import { addItem } from '../Redux/slices/cartSlyce';
 
 export default function Item(props) {
   const dispatch = useDispatch();
+  const items = useSelector((state) => state.cart.items);
   const item = useSelector((state) => state.cart.items.find((item) => item.id === props.id));
   const addItemtoCart = () => {
     dispatch(
@@ -26,6 +27,7 @@ export default function Item(props) {
   const [activeSize, setActiveSize] = useState(0);
   const [activeType, setActiveType] = useState(0);
   const types = ['тонкое', 'традиционное'];
+
   return (
     <div className={style.root}>
       <div className={style.block}>
@@ -68,7 +70,17 @@ export default function Item(props) {
               />
             </svg>
             <span>Добавить</span>
-            {item ? <i>{item.amount}</i> : ''}
+            {item ? (
+              <i>
+                {items
+                  .filter((el) => item.id === el.id)
+                  .reduce((sum, el) => {
+                    return sum + el.amount;
+                  }, 0)}
+              </i>
+            ) : (
+              ''
+            )}
           </button>
         </div>
       </div>

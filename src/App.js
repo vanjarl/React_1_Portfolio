@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 
 import Header from './components/Header';
 import Home from './pages/Home';
-import Cart from './pages/Cart';
+import Cart from './pages/Cart/Cart';
 import NotFound from './pages/NotFound';
 
 export const SearchContext = createContext('');
