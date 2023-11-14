@@ -11,7 +11,7 @@ export const fetchItems = createAsyncThunk('itemsFromBack/fetchByStatus', async 
 
 const initialState = {
   items: [],
-  status: 'loading',
+  status: 'loading ',
 };
 
 export const itemsSlice = createSlice({

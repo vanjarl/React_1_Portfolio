@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import style from './Item.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addItem } from '../Redux/slices/cartSlyce';
+import { addItem } from '../../store/slices/cartSlyce';
 
 export default function Item(props) {
   const dispatch = useDispatch();

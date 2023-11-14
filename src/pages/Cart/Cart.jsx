@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItem, minusItem, deleteItem, deleteAll } from '../../components/Redux/slices/cartSlyce';
+import { addItem, minusItem, deleteItem, deleteAll } from '../../store/slices/cartSlyce';
+import styles from './Cart.module.scss';
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -9,11 +10,12 @@ export default function Cart() {
 
   if (totalAmount === 0)
     return (
-      <div class="container container--cart">
+      <div
+        class="container container--cart"
+        // {styles.root}
+      >
         <div class="cart cart--empty">
-          <h2>
-            Корзина пустая <icon>😕</icon>
-          </h2>
+          <h2>Корзина пустая</h2>
           <p>
             Вероятней всего, вы не заказывали ещё пиццу.
             <br />

@@ -1,12 +1,11 @@
-.container {
-	width: $container-width;
-	margin: 0 auto;
+// .container {
+// 	width: $container-width;
+// 	margin: 0 auto;
 
-	&--cart {
-		max-width: 820px;
-		margin: 90px auto;
-		.content__title {
-			margin: 0;
-		}
+.root {
+	max-width: 820px;
+	margin: 90px auto;
+	.content__title {
+		margin: 0;
 	}
 }

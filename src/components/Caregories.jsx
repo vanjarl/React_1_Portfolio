@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { changeCategoryId } from './Redux/slices/filterSlyce';
+import { changeCategoryId } from '../store/slices/filterSlyce';
 
 export default function Caregories() {
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];

@@ -23,6 +23,23 @@ body {
 		margin: 35px 0;
 	}
 
+	&__error {
+		// display: flex;
+		// flex-direction: column;
+		// align-items: center;
+		margin: 60px auto;
+		width: 580px;
+		text-align: center;
+		h2 {
+			font-weight: 700;
+			font-size: 32px;
+			margin-bottom: 10px;
+		}
+		p {
+			font-size: 20px;
+		}
+	}
+
 	&__items {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
@@ -74,7 +91,7 @@ body {
 			margin-right: 10px;
 			path {
 				stroke: $black;
-				strokewidth: 1.9;
+				stroke-width: 1.9;
 			}
 		}
 	}
@@ -267,7 +284,7 @@ body {
 					margin-right: 12px;
 					path {
 						fill: transparent;
-						strokewidth: 2;
+						stroke-width: 2;
 					}
 				}
 			}

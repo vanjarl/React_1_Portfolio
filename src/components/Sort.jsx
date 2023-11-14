@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeSortType } from './Redux/slices/filterSlyce';
+import { changeSortType } from '../store/slices/filterSlyce';
 
 export default function Sort() {
   const rootRef = useRef();

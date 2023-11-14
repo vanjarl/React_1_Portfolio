@@ -2,7 +2,7 @@ import './scss/app.scss';
 import React from 'react';
 import { createContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { store } from './components/Redux/store';
+import { store } from './store/store';
 import { Provider } from 'react-redux';
 
 import Header from './components/Header';
