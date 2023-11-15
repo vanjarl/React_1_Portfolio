@@ -7,6 +7,7 @@ const initialState = {
   },
   categoryId: 0,
   currentPage: 1,
+  searchValue: '',
 };
 
 export const filterSlice = createSlice({
@@ -22,9 +23,19 @@ export const filterSlice = createSlice({
     changePage: (state, action) => {
       state.currentPage = action.payload;
     },
+    changeSearchValue: (state, action) => {
+      state.searchValue = action.payload;
+    },
+
+    changeParams: (state, action) => {
+      state.sortType = action.payload.sortType;
+      state.currentPage = Number(action.payload.currentPage);
+      state.categoryId = Number(action.payload.categoryId);
+    },
   },
 });
 
-export const { changeCategoryId, changeSortType, changePage } = filterSlice.actions;
+export const { changeCategoryId, changeSortType, changePage, changeParams, changeSearchValue } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;
