@@ -1,8 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeSortType } from '../store/slices/filterSlyce';
+import { changeSortType } from '../../store/slices/filterSlyce';
+import style from './Sort.module.scss';
+import { RootState } from '../../store/store';
 
-export const sortList = [
+type sortItem = {
+  name: string;
+  sortProperty: string;
+};
+
+export const sortList: sortItem[] = [
   { name: 'популярности(по возрастанию)', sortProperty: 'rating' },
   { name: 'популярности(по убыванию)', sortProperty: '-rating' },
   { name: 'цене(по возрастанию)', sortProperty: 'price' },
@@ -11,11 +18,11 @@ export const sortList = [
   { name: 'алфавиту(по убыванию)', sortProperty: '-title' },
 ];
 
-export default function Sort() {
-  const rootRef = useRef();
+const Sort: React.FC = () => {
+  const rootRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.composedPath().includes(rootRef.current)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (rootRef.current && !e.composedPath().includes(rootRef.current)) {
         setShowPopup(false);
       }
     };
@@ -24,20 +31,20 @@ export default function Sort() {
   }, []);
   const [showPopup, setShowPopup] = React.useState(false);
   const dispatch = useDispatch();
-  const activeSort = useSelector((state) => state.filter.sortType);
-  const onClickPopup = (obj) => {
+  const activeSort = useSelector((state: RootState) => state.filter.sortType);
+  const onClickPopup = (obj: sortItem) => {
     dispatch(changeSortType(obj));
     setShowPopup(!showPopup);
   };
   return (
-    <div className="sort" ref={rootRef}>
-      <div className="sort__label">
+    <div className={style.root} ref={rootRef}>
+      <div className={style.label}>
         <img src="arrow-top.svg" alt="" />
         <b>Сортировка по:</b>
         <span onClick={() => setShowPopup(!showPopup)}>{activeSort.name}</span>
       </div>
       {showPopup && (
-        <div className="sort__popup">
+        <div className={style.popup}>
           <ul>
             {sortList.map((obj) => (
               <li
@@ -52,4 +59,6 @@ export default function Sort() {
       )}
     </div>
   );
-}
+};
+
+export default Sort;

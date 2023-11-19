@@ -1,5 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export type FilterType = {
+  name: string;
+  sortProperty: '-rating' | 'rating' | 'price' | '-price' | 'title' | '-title';
+};
+
+export interface IFilterSlyce {
+  sortType: FilterType;
+  categoryId: number;
+  currentPage: number;
+  searchValue: string;
+}
+
 const initialState = {
   sortType: {
     name: 'популярности(по убыванию)',

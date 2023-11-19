@@ -8,24 +8,24 @@ import closeIcon from '../../assets/img/header/closeSearch_icon.svg';
 
 import { changeSearchValue } from '../../store/slices/filterSlyce';
 
-export default function Search() {
+const Search: React.FC = () => {
   const dispatch = useDispatch();
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState('');
 
   const onCloseIcon = () => {
     dispatch(changeSearchValue(''));
     setInputValue('');
-    inputRef.current.focus();
+    inputRef.current?.focus();
   };
 
-  const onChangeInput = (event) => {
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
     updateSearchValue(event.target.value);
   };
 
   const updateSearchValue = useCallback(
-    debounce((str) => {
+    debounce((str: string) => {
       dispatch(changeSearchValue(str));
     }, 250),
     [],
@@ -54,4 +54,6 @@ export default function Search() {
       )}
     </div>
   );
-}
+};
+
+export default Search;

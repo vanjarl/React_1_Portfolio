@@ -3,20 +3,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 
-import Caregories from '../components/Caregories';
-import Sort from '../components/Sort';
-import Item from '../components/Item/Item';
-import Skeleton from '../components/Skeleton';
-import Paginate from '../components/Paginate/Paginate';
-import { fetchItems } from '../store/slices/itemsSlyce';
-import { changeParams } from '../store/slices/filterSlyce';
-import { sortList } from '../components/Sort';
+import Categories from '../../components/Categories/Categories';
+import Sort from '../../components/Sort/Sort';
+import Item from '../../components/Item/Item';
+import Skeleton from '../../components/Skeleton';
+import Paginate from '../../components/Paginate/Paginate';
+import { StatusOfFetch, fetchItems } from '../../store/slices/itemsSlyce';
+import { changeParams } from '../../store/slices/filterSlyce';
+import { sortList } from '../../components/Sort/Sort';
+import style from './Home.module.scss';
+import { AppDispatch, RootState } from '../../store/store';
 
-export default function Home() {
-  const dispatch = useDispatch();
+const Home: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { categoryId, sortType, currentPage, searchValue } = useSelector((state) => state.filter);
-  const { items, status } = useSelector((state) => state.itemsFromBack);
+  const { categoryId, sortType, currentPage, searchValue } = useSelector(
+    (state: RootState) => state.filter,
+  );
+  const { items, status } = useSelector((state: RootState) => state.itemsFromBack);
   const isQueryString = useRef(false);
   const isMounted = useRef(false);
 
@@ -32,7 +36,6 @@ export default function Home() {
   useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
-      console.log(params);
       const sortType = sortList.find((el) => {
         return el.sortProperty === params.sortProperty;
       });
@@ -65,14 +68,14 @@ export default function Home() {
   }, [categoryId, sortType, searchValue, currentPage]);
 
   return (
-    <div className="container">
-      <div className="content__top">
-        <Caregories />
+    <div className={`${style.root} container`}>
+      <div className={style.top}>
+        <Categories />
         <Sort />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
-      {status === 'error' ? (
-        <div className="content__error">
+      <h2 className={style.title}>Все пиццы</h2>
+      {status === StatusOfFetch.ERROR ? (
+        <div className={style.error}>
           <h2>Загрузка товаров не удалась</h2>
           <p>
             Приносим свои извинения за временные неудобства
@@ -81,14 +84,21 @@ export default function Home() {
           </p>
         </div>
       ) : (
-        <div className="content__items">
-          {status === 'loading'
+        <div className={style.items}>
+          {status === StatusOfFetch.LOADING
             ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-            : items.map((pizza) => <Item {...pizza} key={pizza.id} />)}
+            : items.map((pizza) => (
+                //TODO: перенести link в компонент Item
+                // <Link to={`/item/${pizza.id}`} key={pizza.id}>
+                <Item {...pizza} key={pizza.id} />
+                // </Link>
+              ))}
         </div>
       )}
 
       <Paginate currentPage={currentPage} />
     </div>
   );
-}
+};
+
+export default Home;

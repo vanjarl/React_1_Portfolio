@@ -1,16 +1,18 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { changeCategoryId } from '../store/slices/filterSlyce';
+import { changeCategoryId } from '../../store/slices/filterSlyce';
+import styles from './Categories.module.scss';
+import { RootState } from '../../store/store';
 
-export default function Caregories() {
+const Categories: React.FC = () => {
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
-  const activeId = useSelector((state) => state.filter.categoryId);
+  const activeId = useSelector((state: RootState) => state.filter.categoryId);
   const dispatch = useDispatch();
 
   return (
-    <div className="categories">
+    <div className={styles.root}>
       <ul>
         {categories.map((category, i) => (
           <li
@@ -23,4 +25,6 @@ export default function Caregories() {
       </ul>
     </div>
   );
-}
+};
+
+export default Categories;

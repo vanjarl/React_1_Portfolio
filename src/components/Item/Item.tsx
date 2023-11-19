@@ -3,11 +3,18 @@ import style from './Item.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addItem } from '../../store/slices/cartSlyce';
+import { RootState } from '../../store/store';
+import { CartSlyceItem } from '../CartItem/CartItem';
+import { FetchedItem } from '../../store/slices/itemsSlyce';
 
-export default function Item(props) {
+const Item: React.FC<FetchedItem> = (props) => {
+  console.log(props);
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.cart.items);
-  const item = useSelector((state) => state.cart.items.find((item) => item.id === props.id));
+  const items = useSelector((state: RootState) => state.cart.items);
+  const item = useSelector((state: RootState) =>
+    state.cart.items.find((item: CartSlyceItem) => item.id === props.id),
+  );
+
   const addItemtoCart = () => {
     dispatch(
       addItem({
@@ -21,7 +28,7 @@ export default function Item(props) {
     );
   };
 
-  const onActiveType = (i) => {
+  const onActiveType = (i: number) => {
     setActiveType(i);
   };
   const [activeSize, setActiveSize] = useState(0);
@@ -73,8 +80,8 @@ export default function Item(props) {
             {item ? (
               <i>
                 {items
-                  .filter((el) => item.id === el.id)
-                  .reduce((sum, el) => {
+                  .filter((el: any) => item.id === el.id)
+                  .reduce((sum: any, el: any) => {
                     return sum + el.amount;
                   }, 0)}
               </i>
@@ -86,4 +93,6 @@ export default function Item(props) {
       </div>
     </div>
   );
-}
+};
+
+export default Item;
