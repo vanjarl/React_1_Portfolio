@@ -1,21 +1,21 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeSortType } from '../../store/slices/filterSlyce';
+import { SortBy, changeSortType } from '../../store/slices/filterSlyce';
 import style from './Sort.module.scss';
 import { RootState } from '../../store/store';
 
-type sortItem = {
+export type SortItem = {
   name: string;
-  sortProperty: string;
+  sortProperty: SortBy;
 };
 
-export const sortList: sortItem[] = [
-  { name: 'популярности(по возрастанию)', sortProperty: 'rating' },
-  { name: 'популярности(по убыванию)', sortProperty: '-rating' },
-  { name: 'цене(по возрастанию)', sortProperty: 'price' },
-  { name: 'цене(по убыванию)', sortProperty: '-price' },
-  { name: 'алфавиту(по возрастанию)', sortProperty: 'title' },
-  { name: 'алфавиту(по убыванию)', sortProperty: '-title' },
+export const sortList: SortItem[] = [
+  { name: 'популярности(по возрастанию)', sortProperty: SortBy.RATING_ASC },
+  { name: 'популярности(по убыванию)', sortProperty: SortBy.RATING_DESC },
+  { name: 'цене(по возрастанию)', sortProperty: SortBy.PRICE_ASC },
+  { name: 'цене(по убыванию)', sortProperty: SortBy.PRICE_DESC },
+  { name: 'алфавиту(по возрастанию)', sortProperty: SortBy.TITLE_ASC },
+  { name: 'алфавиту(по убыванию)', sortProperty: SortBy.TITLE_DESC },
 ];
 
 const Sort: React.FC = () => {
@@ -32,7 +32,7 @@ const Sort: React.FC = () => {
   const [showPopup, setShowPopup] = React.useState(false);
   const dispatch = useDispatch();
   const activeSort = useSelector((state: RootState) => state.filter.sortType);
-  const onClickPopup = (obj: sortItem) => {
+  const onClickPopup = (obj: SortItem) => {
     dispatch(changeSortType(obj));
     setShowPopup(!showPopup);
   };

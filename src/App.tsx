@@ -16,9 +16,9 @@ function App() {
     <Router>
       <Provider store={store}>
         <div className={style.root}>
-          <Header />
           <div className="content">
             <Routes>
+              <Header />
               <Route path="/cart" element={<Cart />} />
               <Route path="/" element={<Home />} />
               <Route path="/item/:id" element={<ItemBlock />} />

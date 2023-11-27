@@ -9,7 +9,7 @@ import Item from '../../components/Item/Item';
 import Skeleton from '../../components/Skeleton';
 import Paginate from '../../components/Paginate/Paginate';
 import { StatusOfFetch, fetchItems } from '../../store/slices/itemsSlyce';
-import { changeParams } from '../../store/slices/filterSlyce';
+import { changeFilters } from '../../store/slices/filterSlyce';
 import { sortList } from '../../components/Sort/Sort';
 import style from './Home.module.scss';
 import { AppDispatch, RootState } from '../../store/store';
@@ -39,14 +39,18 @@ const Home: React.FC = () => {
       const sortType = sortList.find((el) => {
         return el.sortProperty === params.sortProperty;
       });
+
+      if (sortType) {
+        params.sortType = sortType;
+      }
       dispatch(
-        changeParams({
+        changeFilters({
           ...params,
-          sortType,
         }),
       );
       isQueryString.current = true;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // не срабатывает при первом рендере (isMounted===false). Вшивает наши поисковые параметры в адресную строку
   useEffect(() => {
@@ -59,12 +63,14 @@ const Home: React.FC = () => {
       navigate(`?${queryString}`);
     }
     isMounted.current = true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId, sortType, searchValue, currentPage]);
 
   useEffect(() => {
     if (!isQueryString.current) fetchData();
     window.scrollTo(0, 0);
     isQueryString.current = false;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId, sortType, searchValue, currentPage]);
 
   return (
@@ -87,12 +93,7 @@ const Home: React.FC = () => {
         <div className={style.items}>
           {status === StatusOfFetch.LOADING
             ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-            : items.map((pizza) => (
-                //TODO: перенести link в компонент Item
-                // <Link to={`/item/${pizza.id}`} key={pizza.id}>
-                <Item {...pizza} key={pizza.id} />
-                // </Link>
-              ))}
+            : items.map((pizza) => <Item {...pizza} key={pizza.id} />)}
         </div>
       )}
 

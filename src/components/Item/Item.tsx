@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { addItem } from '../../store/slices/cartSlyce';
 import { RootState } from '../../store/store';
-import { CartSlyceItem } from '../CartItem/CartItem';
+import { CartSlyceItem } from '../../store/slices/cartSlyce';
 import { FetchedItem } from '../../store/slices/itemsSlyce';
+import { Link } from 'react-router-dom';
 
 const Item: React.FC<FetchedItem> = (props) => {
-  console.log(props);
   const dispatch = useDispatch();
   const items = useSelector((state: RootState) => state.cart.items);
   const item = useSelector((state: RootState) =>
@@ -16,16 +16,16 @@ const Item: React.FC<FetchedItem> = (props) => {
   );
 
   const addItemtoCart = () => {
-    dispatch(
-      addItem({
-        id: props.id,
-        imageUrl: props.imageUrl,
-        title: props.title,
-        price: props.price,
-        size: props.sizes[activeSize],
-        type: types[activeType],
-      }),
-    );
+    const ItemToCart: CartSlyceItem = {
+      id: props.id,
+      imageUrl: props.imageUrl,
+      title: props.title,
+      price: props.price,
+      size: props.sizes[activeSize],
+      type: types[activeType],
+      amount: 0,
+    };
+    dispatch(addItem(ItemToCart));
   };
 
   const onActiveType = (i: number) => {
@@ -38,8 +38,10 @@ const Item: React.FC<FetchedItem> = (props) => {
   return (
     <div className={style.root}>
       <div className={style.block}>
-        <img className={style.image} src={props.imageUrl} alt="Pizza" />
-        <h4 className={style.title}>{props.title}</h4>
+        <Link to={`/item/${props.id}`}>
+          <img className={style.image} src={props.imageUrl} alt="Pizza" />
+          <h4 className={style.title}>{props.title}</h4>
+        </Link>
         <div className={style.selector}>
           <ul>
             {props.types.map((typeId, i) => (

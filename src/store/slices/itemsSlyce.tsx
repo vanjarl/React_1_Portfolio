@@ -1,7 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-type FetchParams = {
+export enum StatusOfFetch {
+  LOADING = 'loading',
+  SUCCESS = 'success',
+  ERROR = 'error',
+}
+
+export type FetchParams = {
   category: string;
   sortBy: string;
   order: string;
@@ -19,13 +25,6 @@ export type FetchedItem = {
   category: number;
   rating: number;
 };
-
-export enum StatusOfFetch {
-  LOADING = 'loading',
-  SUCCESS = 'success',
-  ERROR = 'error',
-}
-
 interface IItemSlyce {
   items: FetchedItem[];
   status: StatusOfFetch;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Search from '../Search/Search';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
@@ -7,8 +7,17 @@ import { RootState } from '../../store/store';
 
 const Header: React.FC = () => {
   const location = useLocation();
+  const isMounted = useRef(false);
+  const { totalAmount, totalPrice, items } = useSelector((state: RootState) => state.cart);
 
-  const { totalAmount, totalPrice } = useSelector((state: RootState) => state.cart);
+  useEffect(() => {
+    if (isMounted.current) {
+      const cartItemsStr = JSON.stringify(items);
+      localStorage.setItem('items', cartItemsStr);
+    }
+    isMounted.current = true;
+  }, [items]);
+
   return (
     <div className={style.root}>
       <div className={`${style.container} container`}>

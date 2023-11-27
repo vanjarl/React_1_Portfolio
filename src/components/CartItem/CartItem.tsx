@@ -1,18 +1,7 @@
 import React from 'react';
 import styles from './CartItem.module.scss';
 import { useDispatch } from 'react-redux';
-import { deleteItem, minusItem, addItem } from '../../store/slices/cartSlyce';
-// import { FetchedItem } from '../../store/slices/itemsSlyce';
-
-export type CartSlyceItem = {
-  id: string;
-  imageUrl: string;
-  title: string;
-  price: number;
-  size: number;
-  type: string;
-  amount: number;
-};
+import { deleteItem, minusItem, addItem, CartSlyceItem } from '../../store/slices/cartSlyce';
 
 const CartItem: React.FC<CartSlyceItem> = (props) => {
   const dispatch = useDispatch();
@@ -29,9 +18,12 @@ const CartItem: React.FC<CartSlyceItem> = (props) => {
         </p>
       </div>
       <div className={styles.count}>
-        <div
+        <button
+          disabled={props.amount === 1}
           onClick={() => dispatch(minusItem(props))}
-          className={`button button--outline button--circle ${styles.button}`}>
+          className={`button button--outline button--circle ${
+            props.amount === 1 ? styles.disabled : ''
+          }`}>
           <div className={styles.minus}>
             <svg
               width="10"
@@ -47,7 +39,7 @@ const CartItem: React.FC<CartSlyceItem> = (props) => {
                 fill="#EB5A1E"></path>
             </svg>
           </div>
-        </div>
+        </button>
         <b>{props.amount}</b>
         <div
           onClick={() => dispatch(addItem(props))}

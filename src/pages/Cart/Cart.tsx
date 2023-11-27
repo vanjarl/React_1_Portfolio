@@ -46,21 +46,18 @@ const Cart: React.FC = () => {
           </div>
         </div>
         <div className={styles.items}>
-          {items.map(
-            (item) =>
-              item.amount && (
-                <CartItem
-                  amount={item.amount}
-                  id={item.id}
-                  imageUrl={item.imageUrl}
-                  price={item.price}
-                  size={item.size}
-                  title={item.title}
-                  type={item.type}
-                  key={item.id + item.type + item.size}
-                />
-              ),
-          )}
+          {items.map((item) => (
+            <CartItem
+              amount={item.amount}
+              id={item.id}
+              imageUrl={item.imageUrl}
+              price={item.price}
+              size={item.size}
+              title={item.title}
+              type={item.type}
+              key={item.id + item.type + item.size}
+            />
+          ))}
         </div>
         <div className={styles.bottom}>
           <div className={styles.details}>

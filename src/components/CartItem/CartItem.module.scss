@@ -45,6 +45,17 @@
 		justify-content: space-between;
 		width: 13%;
 
+		.disabled {
+			opacity: 0.2;
+			// TODO:изучить трансформ
+			// TODO: ознакомиться с библиотекой ahooks
+			transform: none;
+			border-color: grey;
+			&:hover {
+				background-color: white;
+			}
+		}
+
 		.minus {
 			svg {
 				path:first-of-type {
