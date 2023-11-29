@@ -16,7 +16,8 @@ export type FetchParams = {
 };
 
 export type FetchedItem = {
-  id: string;
+  _id: string;
+  // id: string;
   imageUrl: string;
   title: string;
   types: number[];
@@ -35,7 +36,8 @@ export const fetchItems = createAsyncThunk(
   async (params: FetchParams) => {
     const { category, sortBy, order, search, currentPage } = params;
     const { data } = await axios.get<FetchedItem[]>(
-      `https://6453758ee9ac46cedf25d56d.mockapi.io/items?page=${currentPage}&limit=4${category}${sortBy}${order}${search}`,
+      // `https://6453758ee9ac46cedf25d56d.mockapi.io/items?page=${currentPage}&limit=4${category}${sortBy}${order}${search}`,
+      `http://localhost:4444/items?page=${currentPage}&limit=6${category}${sortBy}${order}${search}`,
     );
     return data;
   },

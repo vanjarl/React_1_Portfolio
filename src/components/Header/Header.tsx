@@ -21,21 +21,21 @@ const Header: React.FC = () => {
   return (
     <div className={style.root}>
       <div className={`${style.container} container`}>
-        <Link to="/" className={style.logo}>
+        {/* <Link to="/" className={style.logo}>
           <img width="50" src="logo.png" alt="Mental health logo" />
           <div>
             <h1>React Pizza</h1>
             <p>самая вкусная пицца во вселенной</p>
           </div>
-        </Link>
+        </Link> */}
         {location.pathname !== '/cart' && (
           <>
             <Search />
             <div className={style.cart}>
-              <Link to="/cart" className="button button--cart">
+              <Link to="/shop/cart" className="button button--cart">
                 <span>{totalPrice} ₽</span>
                 <div className="button__delimiter"></div>
-                <img src="cart.svg" alt="" />
+                <img src="/cart.svg" alt="" />
                 <span>{totalAmount}</span>
               </Link>
             </div>

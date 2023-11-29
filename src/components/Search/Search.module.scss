@@ -1,36 +1,41 @@
+@import "../../scss/variables";
+
 .root {
-	position: relative;
-}
+	display: none;
+	@include md {
+		position: relative;
+		display: block;
+		.input {
+			width: 350px;
+			padding: 15px 35px;
+			border-color: rgba(0, 0, 0, 0.2);
+			border-radius: 15px;
+			transition: all 0.25s ease-in-out;
+			font-size: 16px;
+			&:focus {
+				border-color: rgba(0, 0, 0, 0.4);
+			}
+		}
 
-.input {
-	width: 350px;
-	padding: 15px 35px;
-	border-color: rgba(0, 0, 0, 0.2);
-	border-radius: 15px;
-	transition: all 0.25s ease-in-out;
-	font-size: 16px;
-	&:focus {
-		border-color: rgba(0, 0, 0, 0.4);
+		.searchSVG,
+		.closeSVG {
+			position: absolute;
+			height: 20px;
+			width: 20px;
+			opacity: 0.4;
+			top: 15px;
+			cursor: pointer;
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+
+		.searchSVG {
+			left: 10px;
+		}
+
+		.closeSVG {
+			right: 10px;
+		}
 	}
-}
-
-.searchSVG,
-.closeSVG {
-	position: absolute;
-	height: 20px;
-	width: 20px;
-	opacity: 0.4;
-	top: 15px;
-	cursor: pointer;
-	&:hover {
-		opacity: 0.7;
-	}
-}
-
-.searchSVG {
-	left: 10px;
-}
-
-.closeSVG {
-	right: 10px;
 }

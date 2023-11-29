@@ -11,10 +11,10 @@ import Paginate from '../../components/Paginate/Paginate';
 import { StatusOfFetch, fetchItems } from '../../store/slices/itemsSlyce';
 import { changeFilters } from '../../store/slices/filterSlyce';
 import { sortList } from '../../components/Sort/Sort';
-import style from './Home.module.scss';
+import style from './Shop.module.scss';
 import { AppDispatch, RootState } from '../../store/store';
 
-const Home: React.FC = () => {
+const Shop: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { categoryId, sortType, currentPage, searchValue } = useSelector(
@@ -75,31 +75,33 @@ const Home: React.FC = () => {
 
   return (
     <div className={`${style.root} container`}>
-      <div className={style.top}>
-        <Categories />
-        <Sort />
+      <div className={`${style.withoutPagination} container`}>
+        <div className={style.top}>
+          <Categories />
+          <Sort />
+        </div>
+        <h2 className={style.title}>Все пиццы</h2>
+        {status === StatusOfFetch.ERROR ? (
+          <div className={style.error}>
+            <h2>Загрузка товаров не удалась</h2>
+            <p>
+              Приносим свои извинения за временные неудобства
+              <br />
+              Попробуйте повторить попытку позже.
+            </p>
+          </div>
+        ) : (
+          <div className={style.items}>
+            {status === StatusOfFetch.LOADING
+              ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
+              : items.map((pizza) => <Item {...pizza} key={pizza._id} />)}
+          </div>
+        )}
+        <div />
       </div>
-      <h2 className={style.title}>Все пиццы</h2>
-      {status === StatusOfFetch.ERROR ? (
-        <div className={style.error}>
-          <h2>Загрузка товаров не удалась</h2>
-          <p>
-            Приносим свои извинения за временные неудобства
-            <br />
-            Попробуйте повторить попытку позже.
-          </p>
-        </div>
-      ) : (
-        <div className={style.items}>
-          {status === StatusOfFetch.LOADING
-            ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-            : items.map((pizza) => <Item {...pizza} key={pizza.id} />)}
-        </div>
-      )}
-
       <Paginate currentPage={currentPage} />
     </div>
   );
 };
 
-export default Home;
+export default Shop;

@@ -12,12 +12,12 @@ const Item: React.FC<FetchedItem> = (props) => {
   const dispatch = useDispatch();
   const items = useSelector((state: RootState) => state.cart.items);
   const item = useSelector((state: RootState) =>
-    state.cart.items.find((item: CartSlyceItem) => item.id === props.id),
+    state.cart.items.find((item: CartSlyceItem) => item.id === props._id),
   );
 
   const addItemtoCart = () => {
     const ItemToCart: CartSlyceItem = {
-      id: props.id,
+      id: props._id,
       imageUrl: props.imageUrl,
       title: props.title,
       price: props.price,
@@ -38,7 +38,7 @@ const Item: React.FC<FetchedItem> = (props) => {
   return (
     <div className={style.root}>
       <div className={style.block}>
-        <Link to={`/item/${props.id}`}>
+        <Link to={`/shop/item/${props._id}`}>
           <img className={style.image} src={props.imageUrl} alt="Pizza" />
           <h4 className={style.title}>{props.title}</h4>
         </Link>

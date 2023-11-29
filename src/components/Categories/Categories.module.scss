@@ -2,14 +2,21 @@
 @import "../../scss/libs/normalize";
 
 .root {
+	width: 100%;
 	ul {
 		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		@include lg {
+			justify-content: space-between;
+		}
+		row-gap: 15px;
+		margin-bottom: 20px;
 
 		:global(li) {
 			background-color: #f9f9f9;
 			padding: 13px 30px;
 			border-radius: 30px;
-			margin-right: 10px;
 			font-weight: bold;
 			cursor: pointer;
 			transition: background-color 0.1s ease-in-out;

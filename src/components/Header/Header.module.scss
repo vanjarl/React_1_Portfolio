@@ -2,12 +2,25 @@
 
 .root {
 	border-bottom: 1px solid $gray-line;
-	padding: 40px 0;
+	padding: 20px 0;
+	@include md {
+		padding: 40px 0;
+	}
+	@include lg {
+		margin-left: 45px;
+	}
 
 	.container {
-		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		text-align: right;
+		@include md {
+			align-items: center;
+			display: flex;
+			column-gap: 15px;
+			flex-wrap: wrap;
+			row-gap: 15px;
+			justify-content: space-between;
+		}
 	}
 
 	.logo {
@@ -28,5 +41,8 @@
 		p {
 			color: #7b7b7b;
 		}
+	}
+	.cart {
+		display: inline-block;
 	}
 }

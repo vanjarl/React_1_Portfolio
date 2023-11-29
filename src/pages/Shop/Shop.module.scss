@@ -1,0 +1,64 @@
+@import "../../scss/variables";
+
+.root {
+	padding: 20px 0;
+	display: flex;
+	flex-direction: column;
+	flex: 1 0 auto;
+	margin: 0 auto;
+	@include md {
+		padding: 40px 0;
+	}
+
+	.withoutPagination {
+		flex: 1 0 auto;
+		@include lg {
+			margin-left: 45px;
+		}
+	}
+
+	.title {
+		margin: 20px 0 30px;
+	}
+
+	.error {
+		margin: 60px auto;
+		width: 580px;
+		text-align: center;
+		h2 {
+			font-weight: 700;
+			font-size: 32px;
+			margin-bottom: 10px;
+		}
+		p {
+			font-size: 20px;
+		}
+	}
+
+	.items {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		grid-template-rows: 1fr;
+		grid-column-gap: 11px;
+		justify-content: center;
+		@include sm {
+			grid-template-columns: repeat(1, 1fr);
+		}
+		@include md {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		@include lg {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		@include xl {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	// .top {
+	// 	display: flex;
+	// 	align-items: center;
+	// 	justify-content: space-between;
+	// 	flex-wrap: wrap;
+	// }
+}

@@ -24,8 +24,8 @@ const Cart: React.FC = () => {
             <br />
             Для того, чтобы заказать пиццу, перейди на главную страницу.
           </p>
-          <img src="empty-cart.png" alt="Empty cart" />
-          <Link to="/" className="button button--black">
+          <img src="/empty-cart.png" alt="Empty cart" />
+          <Link to="/shop" className="button button--black">
             <span>Вернуться назад</span>
           </Link>
         </div>
@@ -36,11 +36,11 @@ const Cart: React.FC = () => {
       <div className={styles.cart}>
         <div className={styles.top}>
           <h2 className={styles.title}>
-            <img src="cart.svg" alt="cart" />
+            <img src="/cart.svg" alt="cart" />
             Корзина
           </h2>
           <div className={styles.clear}>
-            <img src="basket.svg" alt="basket" />
+            <img src="/basket.svg" alt="basket" />
 
             <span onClick={() => onDeleteAllItems()}>Очистить корзину</span>
           </div>
@@ -69,7 +69,7 @@ const Cart: React.FC = () => {
             </span>
           </div>
           <div className={styles.buttons}>
-            <Link to="/" className={`button button--outline button--add ${styles.goBackBtn}`}>
+            <Link to="/shop" className={`button button--outline button--add ${styles.goBackBtn}`}>
               <svg
                 width="8"
                 height="14"

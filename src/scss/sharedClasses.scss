@@ -3,12 +3,20 @@
 
 body {
 	background-color: #022c43;
-	overflow: hidden;
 }
 
 .container {
-	width: $container-width;
+	// width: auto;
 	margin: 0 auto;
+	@include md {
+		width: $container-md;
+	}
+	@include lg {
+		width: $container-lg;
+	}
+	@include xl {
+		width: $container-xl;
+	}
 }
 
 .button {

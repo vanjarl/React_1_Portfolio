@@ -13,7 +13,8 @@ const ItemBlock: React.FC = () => {
   useEffect(() => {
     async function fetchItem() {
       try {
-        const { data } = await axios.get('https://6453758ee9ac46cedf25d56d.mockapi.io/items/' + id);
+        // const { data } = await axios.get('https://6453758ee9ac46cedf25d56d.mockapi.io/items/' + id);
+        const { data } = await axios.get('http://localhost:4444/items/' + id);
         setItem(data);
       } catch {
         alert('Не удалось получить данные о товаре');
@@ -21,6 +22,8 @@ const ItemBlock: React.FC = () => {
     }
     fetchItem();
   }, []);
+
+  console.log(item);
 
   if (!item) return <h1>...Идет загрузка</h1>;
 

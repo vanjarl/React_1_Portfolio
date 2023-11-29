@@ -39,7 +39,7 @@ const Sort: React.FC = () => {
   return (
     <div className={style.root} ref={rootRef}>
       <div className={style.label}>
-        <img src="arrow-top.svg" alt="" />
+        <img src="/arrow-top.svg" alt="" />
         <b>Сортировка по:</b>
         <span onClick={() => setShowPopup(!showPopup)}>{activeSort.name}</span>
       </div>
