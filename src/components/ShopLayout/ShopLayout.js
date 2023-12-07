@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import style from './ShopLayout.module.scss';
-import Header from '../Header/Header';
+import Header from '../ShopHeader/ShopHeader';
 
 const ShopLayout = () => {
   return (

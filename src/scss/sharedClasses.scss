@@ -1,12 +1,13 @@
 @import "./variables";
 @import "./libs/normalize";
+@import "animate.css";
 
 body {
 	background-color: #022c43;
 }
 
 .container {
-	// width: auto;
+	padding-left: 15px;
 	margin: 0 auto;
 	@include md {
 		width: $container-md;
@@ -165,5 +166,11 @@ body {
 			font-weight: 600;
 			font-size: 16px;
 		}
+	}
+}
+
+@for $i from 1 through 35 {
+	.text-animate._#{$i} {
+		animation-delay: #{$i/10}s;
 	}
 }

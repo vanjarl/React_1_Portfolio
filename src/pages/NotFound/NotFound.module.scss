@@ -1,0 +1,17 @@
+@import "../../scss/variables";
+.root {
+	padding: 100px 10px 10px;
+	text-align: center;
+	@include sm {
+		padding: 100px;
+	}
+	h1 {
+		color: #fff;
+		padding: 20px;
+		font-size: 30px;
+	}
+	span {
+		color: #fff;
+		font-size: 20px;
+	}
+}

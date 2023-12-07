@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteAll } from '../../store/slices/cartSlyce';
 import styles from './Cart.module.scss';
-import CartItem from '../../components/CartItem/CartItem';
+import CartItem from '../../components/ShopCartItem/ShopCartItem';
 import { RootState } from '../../store/store';
 
 const Cart: React.FC = () => {

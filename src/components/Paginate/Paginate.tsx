@@ -1,27 +1,29 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 import styles from './Paginate.module.scss';
-import { changePage } from '../../store/slices/filterSlyce';
-import { useDispatch } from 'react-redux';
 
 type PaginationProps = {
   currentPage: number;
+  amount: number;
+  limit: number;
+  onChangePage: (page: number) => {};
 };
 
-const Paginate: React.FC<PaginationProps> = ({ currentPage }) => {
-  const dispatch = useDispatch();
+const Paginate: React.FC<PaginationProps> = ({ currentPage, amount, limit, onChangePage }) => {
+  const pageCount = Math.ceil(amount / limit);
+
   return (
     <>
       <ReactPaginate
         className={styles.root}
         breakLabel="..."
         nextLabel=">"
-        onPageChange={(e) => dispatch(changePage(e.selected + 1))}
-        pageRangeDisplayed={3}
-        pageCount={3}
+        onPageChange={(e) => onChangePage(e.selected + 1)}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
         previousLabel="<"
         forcePage={currentPage - 1}
-        // renderOnZeroPageCount={null}
+        renderOnZeroPageCount={null}
       />
     </>
   );

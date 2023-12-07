@@ -8,7 +8,7 @@ const Sidebar = () => {
   return (
     <div className={style.root}>
       <Link className={style.logo} to="/">
-        <img src="/logo2.png" alt="logo" />
+        <img src="/logo.png" alt="logo" />
         <div className={style.sublogo}>IVAN</div>
       </Link>
       <nav>

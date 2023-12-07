@@ -1,0 +1,95 @@
+@import "../../scss/variables";
+
+.root {
+	background-color: #fff;
+
+	border-radius: 5%;
+	display: grid;
+	grid-template-columns: 100px 0px 1fr;
+
+	@include sm {
+		grid-template-columns: 150px 0px 1fr;
+	}
+	@include md {
+		grid-template-columns: 290px 70px 1fr;
+		grid-template-rows: 70px 1fr;
+	}
+	grid-template-rows: 30px 1fr;
+	grid-column-gap: 5px;
+	& > div:not(:first-child) {
+		padding: 8px;
+	}
+
+	.postImage {
+		grid-area: 1 / 1 / 3 / 2;
+
+		img {
+			display: block;
+			border-radius: 5%;
+
+			width: 100%;
+		}
+	}
+	.avatar {
+		display: none;
+		@include sm {
+			display: block;
+			grid-area: 1 / 2 / 2 / 3;
+			img {
+				width: 100%;
+				border-radius: 50%;
+			}
+		}
+	}
+	.author {
+		display: none;
+		@include sm {
+			grid-area: 1/3/2/4;
+			column-gap: 20px;
+			display: flex;
+		}
+		@include md {
+			flex-direction: column;
+			justify-content: center;
+		}
+	}
+
+	.postData {
+		grid-area: 1 / 3 / 3 / 4;
+
+		@include sm {
+			grid-area: 2 / 3 / 3 / 4;
+		}
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+	}
+	.postTitle {
+		font-weight: 800;
+		font-size: 20px;
+		@include sm {
+			font-size: 25px;
+		}
+	}
+	.postTags {
+		display: none;
+
+		@include sm {
+			// column-gap: 10px;
+			// justify-content: flex-start;
+			display: block;
+		}
+	}
+	.postInfo {
+		display: flex;
+		column-gap: 30px;
+		align-items: center;
+
+		.comments,
+		.views {
+			display: flex;
+			column-gap: 5px;
+			align-items: center;
+		}
+	}
+}

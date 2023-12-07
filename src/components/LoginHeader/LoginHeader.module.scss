@@ -1,0 +1,30 @@
+@import "../../scss/variables";
+.root {
+	color: #fff;
+	padding: 20px;
+	text-align: center;
+	border-bottom: 1px solid #a9a9a9;
+	margin-top: 70px;
+	@include lg {
+		margin-top: 0px;
+		padding: 30px;
+	}
+
+	.loginBlock {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	button {
+		font-size: 16px;
+		background-color: #4fc3f7;
+		margin-left: 10px;
+		&:hover {
+			background-color: #0288d1;
+		}
+	}
+
+	.redButton {
+		background-color: #fe5f1e;
+	}
+}

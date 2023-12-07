@@ -13,11 +13,11 @@ export type FetchParams = {
   order: string;
   search: string;
   currentPage: number;
+  limitOfItemsOnPage: number;
 };
 
 export type FetchedItem = {
   _id: string;
-  // id: string;
   imageUrl: string;
   title: string;
   types: number[];
@@ -28,16 +28,21 @@ export type FetchedItem = {
 };
 interface IItemSlyce {
   items: FetchedItem[];
+  amountOfItems: number;
   status: StatusOfFetch;
+}
+
+interface IDataFromBack {
+  items: FetchedItem[];
+  amount: number;
 }
 
 export const fetchItems = createAsyncThunk(
   'itemsFromBack/fetchByStatus',
   async (params: FetchParams) => {
-    const { category, sortBy, order, search, currentPage } = params;
-    const { data } = await axios.get<FetchedItem[]>(
-      // `https://6453758ee9ac46cedf25d56d.mockapi.io/items?page=${currentPage}&limit=4${category}${sortBy}${order}${search}`,
-      `http://localhost:4444/items?page=${currentPage}&limit=6${category}${sortBy}${order}${search}`,
+    const { category, sortBy, order, search, currentPage, limitOfItemsOnPage } = params;
+    const { data } = await axios.get<IDataFromBack>(
+      `http://localhost:4444/items?page=${currentPage}&limit=${limitOfItemsOnPage}${category}${sortBy}${order}${search}`,
     );
     return data;
   },
@@ -45,6 +50,7 @@ export const fetchItems = createAsyncThunk(
 
 const initialState: IItemSlyce = {
   items: [],
+  amountOfItems: 0,
   status: StatusOfFetch.LOADING,
 };
 
@@ -53,7 +59,7 @@ export const itemsSlice = createSlice({
   initialState,
   reducers: {
     setItems: (state, action) => {
-      state.items = action.payload;
+      state.items = action.payload.items;
     },
   },
   extraReducers: (builder) => {
@@ -62,7 +68,9 @@ export const itemsSlice = createSlice({
       state.items = [];
     });
     builder.addCase(fetchItems.fulfilled, (state, action) => {
-      state.items = action.payload;
+      state.items = action.payload.items;
+      state.amountOfItems = action.payload.amount;
+
       state.status = StatusOfFetch.SUCCESS;
     });
     builder.addCase(fetchItems.rejected, (state) => {

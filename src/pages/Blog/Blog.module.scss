@@ -1,0 +1,79 @@
+@import "../../scss/variables";
+
+.root {
+	display: flex;
+	flex-direction: column;
+	flex: 1 0 auto;
+	margin: 0 auto;
+	padding: 0px 5px 0px 20px;
+	@include lg {
+		padding: 0px 5px 0px 100px;
+	}
+
+	.withoutPagination {
+		flex: 1 0 auto;
+		@include lg {
+			margin-left: 45px;
+		}
+	}
+
+	main {
+		padding: 20px 0px;
+	}
+
+	.mainPart {
+		display: flex;
+		column-gap: 20px;
+
+		.posts {
+			width: 100%;
+
+			display: flex;
+			row-gap: 20px;
+			flex-direction: column;
+		}
+	}
+
+	.tabs {
+		display: flex;
+		column-gap: 10px;
+		margin-bottom: 20px;
+		button {
+			background-color: #4fc3f7;
+			.active {
+				background-color: #0288d1;
+			}
+		}
+	}
+
+	.aside {
+		display: none;
+		@include md {
+			display: flex;
+			flex-direction: column;
+			row-gap: 20px;
+			min-width: 150px;
+
+			.tags,
+			.comments {
+				background-color: #fff;
+				border-radius: 5%;
+				padding: 10px;
+				display: flex;
+				flex-direction: column;
+				row-gap: 10px;
+				.title {
+					font-weight: 700;
+				}
+				.tag {
+					display: flex;
+					align-items: center;
+					span {
+						font-weight: 800;
+						margin-right: 15px;
+					}
+				}
+			}
+		}
+	}
+}
