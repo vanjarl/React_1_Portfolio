@@ -3,29 +3,26 @@ import style from './Blog.module.scss';
 import SkeletonBlog from '../../components/Skeletons/SkeletonBlog';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from '../../store/slices/postSlyce';
-import { StatusOfPostFetch } from '../../store/slices/postSlyce';
+import { StatusOfFetch } from '../../store/slices/itemsSlyce';
 import Post from '../../components/BlogPost/BlogPost';
 import Paginate from '../../components/Paginate/Paginate';
 
 const Blog = () => {
   const dispatch = useDispatch();
-  const { posts, status, tags } = useSelector((state) => state.postsFromBack);
+  const { posts, status, tags, amount } = useSelector((state) => state.postsFromBack);
+
   const [uniqueTags, setUniqueTags] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 3;
-  useEffect(() => {
-    // TODO: сделать пагинацию
-    console.log(currentPage, limit);
-    dispatch(fetchPosts(currentPage, limit));
-  }, []);
+  const limit = 1;
   const onPagination = (page) => {
     setCurrentPage(page);
-    dispatch(fetchPosts(currentPage, limit));
   };
+  useEffect(() => {
+    dispatch(fetchPosts({ currentPage, limit }));
+  }, [currentPage, limit]);
 
   useEffect(() => {
     setUniqueTags(tags.filter((value, index, self) => self.indexOf(value) === index));
-    console.log(uniqueTags);
   }, [tags]);
 
   return (
@@ -37,17 +34,17 @@ const Blog = () => {
         </div>
         <div className={style.mainPart}>
           <div className={style.posts}>
-            {status === StatusOfPostFetch.LOADING
+            {status === StatusOfFetch.LOADING
               ? [...new Array(3)].map((_, index) => <SkeletonBlog key={index} />)
               : posts.map((post) => <Post item={post} key={post.title} />)}
           </div>
-          {status === StatusOfPostFetch.SUCCESS ? (
+          {status === StatusOfFetch.SUCCESS ? (
             <div className={style.aside}>
               <div className={style.tags}>
                 <div className={style.title}>Теги</div>
 
                 {uniqueTags.slice(0, 10).map((tag) => (
-                  <div className={style.tag}>
+                  <div className={style.tag} key={tag}>
                     <span>#</span>
                     {tag}
                   </div>
@@ -63,10 +60,11 @@ const Blog = () => {
         </div>
       </main>
       <Paginate
-        currentPage={1}
-        amount={10}
+        currentPage={currentPage}
+        amount={amount}
         limit={limit}
         onChangePage={(page) => onPagination(page)}
+        className={'blog'}
       />
     </div>
   );

@@ -104,6 +104,7 @@ const Shop: React.FC = () => {
         currentPage={currentPage}
         amount={amountOfItems}
         limit={limitOfItemsOnPage}
+        className={'shop'}
         onChangePage={(page) => dispatch(changePage(page))}
       />
     </div>

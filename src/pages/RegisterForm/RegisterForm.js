@@ -17,8 +17,8 @@ const RegisterForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Здесь вы можете добавить логику для отправки данных на сервер (например, через API запрос)
-    console.log('Email:', email);
-    console.log('Password:', password);
+    // console.log('Email:', email);
+    // console.log('Password:', password);
   };
 
   return (

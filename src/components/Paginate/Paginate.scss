@@ -1,0 +1,59 @@
+.paginate {
+	display: flex;
+	flex-direction: row;
+	column-gap: 10px;
+	justify-content: center;
+
+
+	a {
+		width: 40px;
+		height: 40px;
+		border: solid 1px;
+		border-radius: 50%;
+		text-align: center;
+		line-height: 38px;
+		display: inline-block;
+		cursor: pointer;
+		transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+		&:hover {
+			color: white;
+		}
+	}
+	.selected {
+		a {
+			color: white;
+		}
+	}
+}
+
+
+.shop {
+	a {
+		border-color: #fe5f1e;
+		color: #fe5f1e;
+		&:hover {
+			background-color: #fe5f1e;
+		}
+	}
+	.selected {
+		a {
+			background-color: #fe5f1e;
+		}
+	}
+}
+
+.blog {
+	a {
+		border-color: #4fc3f7;
+		color: #4fc3f7;
+		&:hover {
+			background-color: #4fc3f7;
+		}
+	}
+
+	.selected {
+		a {
+			background-color: #4fc3f7;
+		}
+	}
+}

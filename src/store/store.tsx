@@ -3,6 +3,7 @@ import filter from './slices/filterSlyce';
 import cart from './slices/cartSlyce';
 import itemsFromBack from './slices/itemsSlyce';
 import postsFromBack from './slices/postSlyce';
+import auth from './slices/authSlyce';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     cart,
     itemsFromBack,
     postsFromBack,
+    auth,
   },
 });
 

@@ -1,11 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from '../../utils/axios';
-
-export enum StatusOfPostFetch {
-  LOADING = 'loading',
-  SUCCESS = 'success',
-  ERROR = 'error',
-}
+import { StatusOfFetch } from './itemsSlyce';
 
 export type FetchPostParams = {
   currentPage: number;
@@ -30,15 +25,13 @@ interface IPostSlyce {
   tags: string[];
   posts: Post[];
   amount: number;
-  status: StatusOfPostFetch;
+  status: StatusOfFetch;
 }
 
 export const fetchPosts = createAsyncThunk(
   'postsFromBack/fetchByStatus',
   async (params: FetchPostParams) => {
-    console.log(params);
     const { currentPage, limit } = params;
-    // console.log(currentPage, limit);
     const { data } = await axios.get<FetchedPosts>(`/posts?page=${currentPage}&limit=${limit}`);
     return data;
   },
@@ -48,7 +41,7 @@ const initialState: IPostSlyce = {
   posts: [],
   tags: [],
   amount: 0,
-  status: StatusOfPostFetch.LOADING,
+  status: StatusOfFetch.LOADING,
 };
 
 export const postsSlice = createSlice({
@@ -63,18 +56,18 @@ export const postsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPosts.pending, (state) => {
-      state.status = StatusOfPostFetch.LOADING;
+      state.status = StatusOfFetch.LOADING;
       state.posts = [];
     });
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       state.posts = action.payload.posts;
       state.tags = action.payload.posts.map((post: Post) => post.tags).flat();
       state.amount = action.payload.amount;
-      state.status = StatusOfPostFetch.SUCCESS;
+      state.status = StatusOfFetch.SUCCESS;
     });
     builder.addCase(fetchPosts.rejected, (state) => {
       state.posts = [];
-      state.status = StatusOfPostFetch.ERROR;
+      state.status = StatusOfFetch.ERROR;
     });
   },
 });
