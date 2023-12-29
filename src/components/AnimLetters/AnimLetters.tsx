@@ -1,6 +1,12 @@
 import React from 'react';
 
-const AnimLetters = (props) => {
+type AnimLettersProps = {
+  strArray: string[];
+  idx: number;
+  className: string;
+};
+
+const AnimLetters: React.FC<AnimLettersProps> = (props) => {
   return (
     <span>
       {props.strArray.map((char, i) => {

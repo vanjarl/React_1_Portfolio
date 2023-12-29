@@ -6,7 +6,7 @@ type PaginationProps = {
   currentPage: number;
   amount: number;
   limit: number;
-  onChangePage: (page: number) => {};
+  onChangePage: (page: number) => void;
   className: string;
 };
 
@@ -32,7 +32,6 @@ const Paginate: React.FC<PaginationProps> = ({
       forcePage={currentPage - 1}
       renderOnZeroPageCount={null}
     />
-    // </div>
   );
 };
 

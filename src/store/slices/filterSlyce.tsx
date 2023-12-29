@@ -41,6 +41,7 @@ export const filterSlice = createSlice({
     },
     changeSortType: (state, action: PayloadAction<FilterType>) => {
       state.sortType = action.payload;
+      state.currentPage = 1;
     },
     changePage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;

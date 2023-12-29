@@ -17,6 +17,7 @@ import FullPost from './pages/FullPost/FullPost';
 import AuthForm from './pages/AuthForm/AuthForm';
 import RegisterForm from './pages/RegisterForm/RegisterForm';
 import AddPost from './pages/AddPost/AddPost';
+import AddShopItem from './pages/AddShopItem/AddShopItem';
 
 function App() {
   return (
@@ -30,22 +31,18 @@ function App() {
                 <Route index element={<Shop />} />
                 <Route path="/shop/cart" element={<Cart />} />
                 <Route path="/shop/item/:id" element={<ItemBlock />} />
+                <Route path="/shop/create" element={<AddShopItem />} />
               </Route>
               <Route path="/blog" element={<BlogLayout />}>
                 <Route index element={<Blog />} />
                 <Route path="/blog/:id" element={<FullPost />} />
+                <Route path="/blog/:id/edit" element={<AddPost />} />
                 <Route path="/blog/create" element={<AddPost />} />
               </Route>
               <Route path="/auth" element={<AuthForm />} />
               <Route path="/registration" element={<RegisterForm />} />
               <Route path="*" element={<NotFound />} />
-              {/* <Route path="/blog" element={<Layout />} /> */}
             </Route>
-
-            {/* <Route path="/cart" element={<Cart />} /> */}
-            {/* <Route path="/" element={<Home />} /> */}
-            {/* <Route path="/item/:id" element={<ItemBlock />} /> */}
-            {/* <Route path="*" element={<NotFound />} /> */}
           </Routes>
         </div>
       </Provider>

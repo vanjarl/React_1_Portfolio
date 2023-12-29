@@ -2,9 +2,13 @@
 
 .root {
 	margin: 0 auto;
+	overflow: hidden;
+	max-width: 100%;
+	padding: 10px;
 
 	@include lg {
-		margin: 10px 10px 0 100px;
+		margin: 10px auto;
+		padding: 10px;
 	}
 
 	.post {
@@ -44,29 +48,29 @@
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
+				overflow: hidden;
+
 				.author {
 					display: flex;
 					column-gap: 10px;
 					padding: 5px;
-
-					.authorData {
-						.name {
-							font-weight: 900;
-						}
-					}
 				}
 
 				.title {
 					padding: 5px;
-					font-size: 26px;
-					@include sm {
-						font-size: 35px;
-					}
+					font-size: 20px;
 					font-weight: 700;
+					text-overflow: ellipsis;
+					overflow: hidden;
 				}
 				.tags {
 					display: flex;
 					column-gap: 5px;
+					flex-wrap: wrap;
+					.tag {
+						text-overflow: ellipsis;
+						overflow: hidden;
+					}
 				}
 				.info {
 					padding: 5px;
@@ -77,11 +81,13 @@
 		}
 		.text {
 			text-indent: 15px;
-			font-size: 25px;
+			text-overflow: ellipsis;
+
+			overflow: hidden;
 		}
 	}
 	.comments {
-		padding: 10px;
+		padding: 15px;
 		border: 1px solid #d3d3d3;
 		background-color: #fff;
 		border-radius: 1%;
@@ -89,33 +95,52 @@
 		flex-direction: column;
 		row-gap: 10px;
 		.title {
-			font-size: 24px;
-			font-weight: 700;
+			font-size: 18px;
+			font-weight: bold;
 		}
-		.comment {
-			display: flex;
 
-			font-size: 24px;
-		}
-		.add {
-			display: flex;
-			padding-top: 10px;
-			textarea {
-				// display: block;
-				border-radius: 1%;
+		.addComment {
+			text-align: end;
+			.commentZone {
+				margin-bottom: 10px;
+				display: flex;
+				padding-top: 10px;
+				align-items: flex-start;
+				position: relative;
+				column-gap: 10px;
+				textarea {
+					flex-grow: 1;
+					border-radius: 1%;
+					padding: 15px;
+					border: 1px solid #cccccc;
 
-				min-width: 100%;
-				// width: 100%;
-				border: 1px solid #cccccc;
-				font-size: 20px;
-				&::placeholder {
-					padding: 10px;
+					&::placeholder {
+						padding: 10px;
+					}
 				}
+			}
+			button {
+				cursor: pointer;
+
+				color: #fff;
+				border: none;
+				border-radius: 3%;
+				background-color: #007bff;
+				padding: 5px;
+				transition: all 0.5s ease-in-out;
+				&:hover {
+					background-color: #0056b3;
+				}
+				width: fit-content;
 			}
 		}
 	}
 	.avatar {
-		width: 40px;
-		object-fit: contain;
+		max-width: 40px;
+		max-height: 40px;
+		border-radius: 50%;
+	}
+	.name {
+		font-weight: 900;
 	}
 }

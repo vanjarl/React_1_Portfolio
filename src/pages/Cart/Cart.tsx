@@ -11,22 +11,22 @@ const Cart: React.FC = () => {
   const { items, totalPrice, totalAmount } = useSelector((state: RootState) => state.cart);
 
   const onDeleteAllItems = () => {
-    if (window.confirm('Вы уверены, что хотите удалить все товары?')) dispatch(deleteAll());
+    if (window.confirm('Ви впевнені, що бажаєте видалити всі товари?')) dispatch(deleteAll());
   };
 
   if (totalAmount === 0)
     return (
       <div className={styles.root}>
         <div className={styles.empty}>
-          <h2>Корзина пустая</h2>
+          <h2>Кошик порожній</h2>
           <p>
-            Вероятней всего, вы не заказывали ещё пиццу.
+            Найімовірніше, ви ще нічого не замовляли...
             <br />
-            Для того, чтобы заказать пиццу, перейди на главную страницу.
+            Щоб замовити наші послуги, перейдіть на головну сторінку.
           </p>
           <img src="/empty-cart.png" alt="Empty cart" />
           <Link to="/shop" className="button button--black">
-            <span>Вернуться назад</span>
+            <span>Перейти в магазин</span>
           </Link>
         </div>
       </div>
@@ -37,12 +37,12 @@ const Cart: React.FC = () => {
         <div className={styles.top}>
           <h2 className={styles.title}>
             <img src="/cart.svg" alt="cart" />
-            Корзина
+            Кошик
           </h2>
           <div className={styles.clear}>
             <img src="/basket.svg" alt="basket" />
 
-            <span onClick={() => onDeleteAllItems()}>Очистить корзину</span>
+            <span onClick={() => onDeleteAllItems()}>Очистити кошик</span>
           </div>
         </div>
         <div className={styles.items}>
@@ -52,20 +52,20 @@ const Cart: React.FC = () => {
               id={item.id}
               imageUrl={item.imageUrl}
               price={item.price}
-              size={item.size}
+              duration={item.duration}
               title={item.title}
-              type={item.type}
-              key={item.id + item.type + item.size}
+              level={item.level}
+              key={item.id + item.level + item.duration}
             />
           ))}
         </div>
         <div className={styles.bottom}>
           <div className={styles.details}>
             <span>
-              Всего пицц: <b>{totalAmount} шт.</b>
+              Всього послуг: <b>{totalAmount} од.</b>
             </span>
             <span>
-              Сумма заказа: <b>{totalPrice} р</b>
+              Сума замовлення: <b>{totalPrice} р</b>
             </span>
           </div>
           <div className={styles.buttons}>
@@ -83,10 +83,10 @@ const Cart: React.FC = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"></path>
               </svg>
-              <span>Вернуться назад</span>
+              <span>Повернутися</span>
             </Link>
             <div className={`button ${styles.payBtn}`}>
-              <span>Оплатить сейчас</span>
+              <span>Оплатити зараз</span>
             </div>
           </div>
         </div>

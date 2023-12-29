@@ -7,9 +7,9 @@ export type CartSlyceItem = {
   id: string;
   imageUrl: string;
   title: string;
-  price: number;
-  size: number;
-  type: string;
+  price: string;
+  duration: string;
+  level: string;
   amount: number;
 };
 export interface ICartSlyce {
@@ -32,8 +32,8 @@ export const cartSlice = createSlice({
       const item = state.items.find(
         (item) =>
           item.id === action.payload.id &&
-          item.type === action.payload.type &&
-          item.size === action.payload.size,
+          item.level === action.payload.level &&
+          item.duration === action.payload.duration,
       );
       if (!item) {
         state.items.push({ ...action.payload, amount: 1 });
@@ -47,8 +47,8 @@ export const cartSlice = createSlice({
       const item = state.items.find(
         (item) =>
           item.id === action.payload.id &&
-          item.type === action.payload.type &&
-          item.size === action.payload.size,
+          item.level === action.payload.level &&
+          item.duration === action.payload.duration,
       );
       if (item) item.amount--;
       state.totalPrice = getTotalPrice(state.items);
@@ -58,8 +58,8 @@ export const cartSlice = createSlice({
       state.items = state.items.filter(
         (item) =>
           item.id !== action.payload.id ||
-          item.type !== action.payload.type ||
-          item.size !== action.payload.size,
+          item.level !== action.payload.level ||
+          item.duration !== action.payload.duration,
       );
       state.totalPrice = getTotalPrice(state.items);
       state.totalAmount = getTotalAmount(state.items);

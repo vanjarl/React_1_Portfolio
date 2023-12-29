@@ -2,10 +2,8 @@
 
 .root {
 	border-bottom: 1px solid $gray-line;
-	padding: 20px 0;
-	margin-top: 60px;
+	padding: 5px 0;
 	@include md {
-		padding: 40px 0;
 	}
 	@include lg {
 		margin-left: 45px;

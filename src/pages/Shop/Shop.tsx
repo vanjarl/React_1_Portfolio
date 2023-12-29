@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 
+import style from './Shop.module.scss';
 import Categories from '../../components/Categories/Categories';
 import Sort from '../../components/ShopSort/ShopSort';
 import Item from '../../components/ShopItem/ShopItem';
@@ -11,7 +12,6 @@ import Paginate from '../../components/Paginate/Paginate';
 import { StatusOfFetch, fetchItems } from '../../store/slices/itemsSlyce';
 import { changeFilters, changePage } from '../../store/slices/filterSlyce';
 import { sortList } from '../../components/ShopSort/ShopSort';
-import style from './Shop.module.scss';
 import { AppDispatch, RootState } from '../../store/store';
 
 const Shop: React.FC = () => {
@@ -23,7 +23,7 @@ const Shop: React.FC = () => {
   const { items, status, amountOfItems } = useSelector((state: RootState) => state.itemsFromBack);
   const isQueryString = useRef(false);
   const isMounted = useRef(false);
-  const limitOfItemsOnPage = 4;
+  const limitOfItemsOnPage = 6;
 
   const fetchData = () => {
     const category = categoryId > 0 ? '&category=' + categoryId : '';
@@ -81,7 +81,7 @@ const Shop: React.FC = () => {
           <Categories />
           <Sort />
         </div>
-        <h2 className={style.title}>Все услуги</h2>
+        <h2 className={style.title}>Усі послуги</h2>
         {status === StatusOfFetch.ERROR ? (
           <div className={style.error}>
             <h2>Загрузка товаров не удалась</h2>
@@ -95,7 +95,7 @@ const Shop: React.FC = () => {
           <div className={style.items}>
             {status === StatusOfFetch.LOADING
               ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-              : items.map((pizza) => <Item {...pizza} key={pizza._id} />)}
+              : items.map((service) => <Item {...service} key={service._id} />)}
           </div>
         )}
         <div />

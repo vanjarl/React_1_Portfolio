@@ -7,7 +7,7 @@
 		display: block;
 		.input {
 			width: 350px;
-			padding: 15px 35px;
+			padding: 10px 35px;
 			border-color: rgba(0, 0, 0, 0.2);
 			border-radius: 15px;
 			transition: all 0.25s ease-in-out;
@@ -20,8 +20,8 @@
 		.searchSVG,
 		.closeSVG {
 			position: absolute;
-			height: 20px;
-			width: 20px;
+			height: 15px;
+			width: 15px;
 			opacity: 0.4;
 			top: 15px;
 			cursor: pointer;

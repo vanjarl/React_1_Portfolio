@@ -46,13 +46,18 @@
 		width: 13%;
 
 		.disabled {
+			cursor: default;
 			opacity: 0.2;
-			// TODO:изучить трансформ
 			// TODO: ознакомиться с библиотекой ahooks
 			transform: none;
 			border-color: grey;
 			&:hover {
 				background-color: white;
+			}
+			svg {
+				path {
+					fill: grey;
+				}
 			}
 		}
 
@@ -91,13 +96,8 @@
 		.button {
 			border-color: darken($color: $gray-line, $amount: 10);
 		}
-
 		svg {
 			transform: rotate(45deg);
-
-			path {
-				fill: darken($color: $gray-line, $amount: 15);
-			}
 		}
 
 		.button {

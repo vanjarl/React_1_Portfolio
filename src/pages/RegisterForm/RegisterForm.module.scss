@@ -13,7 +13,7 @@
 	}
 	.form {
 		width: 320px;
-		padding: 25px;
+		padding: 15px;
 		background-color: #ffffff;
 		border-radius: 8px;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -21,16 +21,35 @@
 
 		.title {
 			font-size: 27px;
-			margin-bottom: 16px;
+			margin-bottom: 10px;
+		}
+
+		.addAvatar {
+			cursor: pointer;
+			color: #007bff;
+			img {
+				padding: 3px;
+			}
+			:hover {
+				color: #0056b3;
+			}
+		}
+
+		.helperText {
+			color: red;
+			font-size: 14px;
 		}
 
 		img {
-			max-width: 110px;
+			max-width: 70px;
+			max-height: 70px;
+			border-radius: 50%;
 		}
 
 		.inputGroup {
-			margin-bottom: 25px;
+			margin-bottom: 15px;
 			text-align: start;
+			position: relative;
 		}
 
 		.label {
@@ -44,6 +63,10 @@
 			border: 1px solid #ccc;
 			border-radius: 4px;
 			font-size: 14px;
+		}
+
+		.red {
+			border-color: red;
 		}
 
 		.button {
@@ -60,6 +83,20 @@
 			&:hover {
 				background-color: #0056b3;
 			}
+			&:disabled {
+				background-color: lightgray;
+				cursor: default;
+			}
+		}
+		.passwordToggle {
+			position: absolute;
+			right: 10px;
+			top: 32px;
+			font-size: 16px;
+			cursor: pointer;
+			color: #000;
+			background-color: #fff;
+			border: none;
 		}
 	}
 }

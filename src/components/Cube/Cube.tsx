@@ -9,7 +9,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import style from './Cube.module.scss';
 
-const Cube = () => {
+const Cube: React.FC = () => {
   return (
     <div className={style.root}>
       <div className={style.cubeSpinner}>

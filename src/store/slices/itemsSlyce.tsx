@@ -16,16 +16,28 @@ export type FetchParams = {
   limitOfItemsOnPage: number;
 };
 
+export type ServicePricing = {
+  price: string[];
+  duration: string[];
+};
+
+export type PriceList = {
+  [key: string]: ServicePricing;
+};
+
 export type FetchedItem = {
-  _id: string;
+  category: number;
+  createdAt: string;
   imageUrl: string;
+  priceList: PriceList;
+  _id: string;
   title: string;
   types: number[];
   sizes: number[];
   price: number;
-  category: number;
   rating: number;
 };
+
 interface IItemSlyce {
   items: FetchedItem[];
   amountOfItems: number;

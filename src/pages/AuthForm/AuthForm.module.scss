@@ -27,6 +27,7 @@
 		.inputGroup {
 			margin-bottom: 10px;
 			text-align: start;
+			position: relative;
 		}
 
 		.label {
@@ -64,6 +65,24 @@
 			&:hover {
 				background-color: #0056b3;
 			}
+			&:disabled {
+				background-color: lightgray;
+				cursor: default;
+			}
+		}
+		.passwordToggle {
+			position: absolute;
+			right: 10px;
+			top: 32px;
+			font-size: 16px;
+			cursor: pointer;
+			color: #000;
+			background-color: #fff;
+			border: none;
+		}
+
+		.checkboxGroup {
+			padding-top: 3px;
 		}
 	}
 }

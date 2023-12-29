@@ -7,9 +7,9 @@ body {
 }
 
 .container {
-	padding-left: 15px;
 	margin: 0 auto;
 	@include md {
+		padding-left: 15px;
 		width: $container-md;
 	}
 	@include lg {
@@ -155,7 +155,7 @@ body {
 		display: flex;
 		align-items: center;
 		line-height: 23px;
-		padding: 12px 25px;
+		padding: 10px 15px;
 
 		svg {
 			margin-right: 8px;

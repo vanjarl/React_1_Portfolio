@@ -10,24 +10,26 @@ export type SortItem = {
 };
 
 export const sortList: SortItem[] = [
-  { name: 'популярности(по возрастанию)', sortProperty: SortBy.RATING_ASC },
-  { name: 'популярности(по убыванию)', sortProperty: SortBy.RATING_DESC },
-  { name: 'цене(по возрастанию)', sortProperty: SortBy.PRICE_ASC },
-  { name: 'цене(по убыванию)', sortProperty: SortBy.PRICE_DESC },
-  { name: 'алфавиту(по возрастанию)', sortProperty: SortBy.TITLE_ASC },
-  { name: 'алфавиту(по убыванию)', sortProperty: SortBy.TITLE_DESC },
+  { name: 'популярності (за зростанням)', sortProperty: SortBy.RATING_ASC },
+  { name: 'популярності (за спаданням)', sortProperty: SortBy.RATING_DESC },
+  { name: 'ціні (за зростанням)', sortProperty: SortBy.PRICE_ASC },
+  { name: 'ціні (за спаданням)', sortProperty: SortBy.PRICE_DESC },
+  { name: 'алфавіту (за зростанням)', sortProperty: SortBy.TITLE_ASC },
+  { name: 'алфавіту (за спаданням)', sortProperty: SortBy.TITLE_DESC },
 ];
 
 const Sort: React.FC = () => {
   const rootRef = useRef<HTMLDivElement>(null);
+  const handleClickOutside = (e: MouseEvent) => {
+    if (rootRef.current && !e.composedPath().includes(rootRef.current)) {
+      setShowPopup(false);
+    }
+  };
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (rootRef.current && !e.composedPath().includes(rootRef.current)) {
-        setShowPopup(false);
-      }
-    };
     document.body.addEventListener('click', handleClickOutside);
-    return document.body.removeEventListener('click', handleClickOutside);
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside);
+    };
   }, []);
   const [showPopup, setShowPopup] = React.useState(false);
   const dispatch = useDispatch();
@@ -39,8 +41,8 @@ const Sort: React.FC = () => {
   return (
     <div className={style.root} ref={rootRef}>
       <div className={style.label}>
-        <img src="/arrow-top.svg" alt="" />
-        <b>Сортировка по:</b>
+        <img src="/arrow-top.svg" alt="стрілка вверх" />
+        <b>Сортувати по:</b>
         <span onClick={() => setShowPopup(!showPopup)}>{activeSort.name}</span>
       </div>
       {showPopup && (

@@ -7,14 +7,14 @@ const CartItem: React.FC<CartSlyceItem> = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className={styles.root} key={props.id + props.type + props.size}>
+    <div className={styles.root} key={props.id + props.level + props.duration}>
       <div className={styles.img}>
-        <img src={props.imageUrl} alt="Pizza" />
+        <img src={`http://localhost:4444${props.imageUrl}`} alt="послуга" />
       </div>
       <div className={styles.info}>
         <h3>{props.title}</h3>
         <p>
-          {props.type} тесто, {props.size} см.
+          Ментор {props.level}, {props.duration} см.
         </p>
       </div>
       <div className={styles.count}>
@@ -62,7 +62,7 @@ const CartItem: React.FC<CartSlyceItem> = (props) => {
         </div>
       </div>
       <div className={styles.price}>
-        <b>{props.price * props.amount} ₽</b>
+        <b>{Number(props.price) * props.amount} ₽</b>
       </div>
       <div onClick={() => dispatch(deleteItem(props))} className={styles.remove}>
         <div className="button button--outline button--circle">

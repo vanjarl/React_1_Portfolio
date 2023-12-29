@@ -3,8 +3,7 @@ import debounce from 'lodash.debounce';
 import { useDispatch } from 'react-redux';
 
 import styles from './ShopSearch.module.scss';
-import searchIcon from '../../assets/img/header/search_icon.svg';
-import closeIcon from '../../assets/img/header/closeSearch_icon.svg';
+import searchIcon from '../../assets/img/search_icon.svg';
 
 import { changeSearchValue } from '../../store/slices/filterSlyce';
 
@@ -34,20 +33,20 @@ const Search: React.FC = () => {
   return (
     <div className={styles.root}>
       <label>
-        <img src={searchIcon} alt="search icon" className={styles.searchSVG} />
+        <img src={searchIcon} alt="пошук" className={styles.searchSVG} />
         <input
           ref={inputRef}
           type="text"
           className={styles.input}
-          placeholder="Найти пиццу"
+          placeholder="Знайти послугу"
           value={inputValue}
           onChange={(event) => onChangeInput(event)}
         />
       </label>
       {inputValue && (
         <img
-          src={closeIcon}
-          alt="close icon"
+          src="/closeSearch.svg"
+          alt="зачинити"
           className={styles.closeSVG}
           onClick={() => onCloseIcon()}
         />

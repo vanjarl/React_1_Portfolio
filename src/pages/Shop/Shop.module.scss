@@ -6,9 +6,9 @@
 	flex-direction: column;
 	flex: 1 0 auto;
 	margin: 0 auto;
-	@include md {
-		padding: 40px 0;
-	}
+	// @include md {
+	// 	padding: 40px 0;
+	// }
 
 	.withoutPagination {
 		flex: 1 0 auto;
@@ -37,10 +37,11 @@
 
 	.items {
 		display: grid;
-		grid-template-columns: repeat(1, 1fr);
+
 		grid-template-rows: 1fr;
 		grid-column-gap: 11px;
 		justify-content: center;
+
 		@include sm {
 			grid-template-columns: repeat(1, 1fr);
 		}
@@ -54,11 +55,4 @@
 			grid-template-columns: repeat(3, 1fr);
 		}
 	}
-
-	// .top {
-	// 	display: flex;
-	// 	align-items: center;
-	// 	justify-content: space-between;
-	// 	flex-wrap: wrap;
-	// }
 }

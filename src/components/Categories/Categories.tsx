@@ -6,7 +6,7 @@ import styles from './Categories.module.scss';
 import { RootState } from '../../store/store';
 
 const Categories: React.FC = () => {
-  const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+  const categories = ['Всі', 'HTML & CSS', 'JavaScript', 'React', 'Node.js Backend'];
 
   const activeId = useSelector((state: RootState) => state.filter.categoryId);
   const dispatch = useDispatch();

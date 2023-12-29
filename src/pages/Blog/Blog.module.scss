@@ -1,14 +1,13 @@
 @import "../../scss/variables";
-
+// TODO при загрузке fullpost наладить скелетон
 .root {
 	display: flex;
 	flex-direction: column;
 	flex: 1 0 auto;
 	margin: 0 auto;
-	padding: 0px 5px 0px 20px;
-	@include lg {
-		padding: 0px 5px 0px 100px;
-	}
+	max-width: 100%;
+	overflow: hidden;
+	padding: 0px 10px;
 
 	.withoutPagination {
 		flex: 1 0 auto;
@@ -19,14 +18,20 @@
 
 	main {
 		padding: 20px 0px;
+		flex: 1 0 auto;
 	}
 
 	.mainPart {
+		flex-direction: column-reverse;
 		display: flex;
 		column-gap: 20px;
+		@include lg {
+			flex-direction: row;
+		}
 
+		// TODO : ахинея с шириной
 		.posts {
-			width: 100%;
+			max-width: 100%;
 
 			display: flex;
 			row-gap: 20px;
@@ -40,40 +45,94 @@
 		margin-bottom: 20px;
 		button {
 			background-color: #4fc3f7;
-			.active {
-				background-color: #0288d1;
-			}
+		}
+		.active {
+			background-color: #0288d1;
 		}
 	}
 
 	.aside {
-		display: none;
-		@include md {
-			display: flex;
-			flex-direction: column;
-			row-gap: 20px;
-			min-width: 150px;
+		display: flex;
+		flex: 1 0 auto;
+		flex-direction: column;
+		row-gap: 20px;
+		min-width: 150px;
+		margin-bottom: 15px;
 
-			.tags,
-			.comments {
-				background-color: #fff;
-				border-radius: 5%;
-				padding: 10px;
+		.tags,
+		.comments {
+			row-gap: 5px;
+			background-color: #fff;
+			border-radius: 5%;
+			padding: 10px;
+			display: flex;
+			flex-direction: row;
+			column-gap: 5px;
+			flex-wrap: wrap;
+			align-items: center;
+			overflow: hidden;
+			max-width: 100%;
+
+			@include lg {
+				max-width: 300px;
+				align-items: baseline;
+				row-gap: 10px;
+				flex-direction: column;
+			}
+
+			.commentBlock {
 				display: flex;
 				flex-direction: column;
-				row-gap: 10px;
-				.title {
-					font-weight: 700;
-				}
-				.tag {
+				column-gap: 5px;
+				// overflow: hidden;
+				.commentUser {
 					display: flex;
 					align-items: center;
-					span {
-						font-weight: 800;
-						margin-right: 15px;
+					column-gap: 5px;
+					img {
+						max-width: 20px;
+						max-height: 20px;
+						border-radius: 50%;
+					}
+					.commentName {
+						overflow: hidden;
+						text-overflow: ellipsis;
+						font-weight: bold;
+						max-width: 70%;
 					}
 				}
+				.commentText {
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+			}
+
+			.title {
+				font-weight: 700;
+			}
+			.tag,
+			.backToPosts {
+				overflow: hidden;
+				max-width: 100%;
+				text-overflow: ellipsis;
+				cursor: pointer;
+				&:hover {
+					color: #0288d1;
+				}
+				span {
+					font-weight: 800;
+				}
+			}
+			.backToPosts {
+				// color: red;
+			}
+		}
+		.comments {
+			display: none;
+			@include lg {
+				display: flex;
 			}
 		}
 	}
+	// }
 }
